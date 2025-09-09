@@ -26,5 +26,26 @@ namespace QuanLyNhanVien
         {
 
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            ContextMenuStrip1.Show(btnAdmin, new Point(0, btnAdmin.Height));
+        }
+
+        private void LoadControl(UserControl uc)
+        {
+            PanelMain.Controls.Clear();
+            uc.Dock = DockStyle.Fill;
+            PanelMain.Controls.Add(uc);
+        }
+        private void BtnNhanVien_Click(object sender, EventArgs e)
+        {
+            LoadControl(new UserControlNhanVien());
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            LoadControl(new UserControlPhongBan());
+        }
     }
 }

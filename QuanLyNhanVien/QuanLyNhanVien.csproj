@@ -68,12 +68,41 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSua.Designer.cs">
+      <DependentUpon>FormSua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormThem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormThem.Designer.cs">
+      <DependentUpon>FormThem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QLNVDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QLNVDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLNVDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLNVDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlNhanVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlNhanVien.Designer.cs">
+      <DependentUpon>UserControlNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlPhongBan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlPhongBan.Designer.cs">
+      <DependentUpon>UserControlPhongBan.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FormDangNhap.resx">
       <DependentUpon>FormDangNhap.cs</DependentUpon>
@@ -83,6 +112,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSua.resx">
+      <DependentUpon>FormSua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormThem.resx">
+      <DependentUpon>FormThem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -94,6 +129,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControlNhanVien.resx">
+      <DependentUpon>UserControlNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlPhongBan.resx">
+      <DependentUpon>UserControlPhongBan.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -119,6 +160,17 @@
     </None>
     <None Include="QLNVDataSet.xss">
       <DependentUpon>QLNVDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QLNVDataSet1.xsc">
+      <DependentUpon>QLNVDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="QLNVDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLNVDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLNVDataSet1.xss">
+      <DependentUpon>QLNVDataSet1.xsd</DependentUpon>
     </None>
     <None Include="Resources\truong-cao-dang-nghe-bach-khoa-ha-noi.png" />
   </ItemGroup>
