@@ -33,7 +33,7 @@ namespace QuanLyNhanVien
         SqlCommand ThucHien;
         SqlDataReader Doc;
         public FormSua(int id, string hoTen, DateTime ngaySinh, string gioiTinh, string diaChi,
-                        string soDienThoai, string email, DateTime ngayVaoLam, string trangThai,
+                        string soDienThoai, string email, DateTime ngayVaoLam, DateTime? ngayNghiViec,string trangThai,
                         string ghiChu, string chucVu, string phongBan)
         {
             InitializeComponent();
@@ -48,6 +48,14 @@ namespace QuanLyNhanVien
             txtSDT.Text = soDienThoai;
             txtEmail.Text = email;
             DateTimeNgayVaoLam.Value = ngayVaoLam;
+            if (ngayNghiViec.HasValue)
+            {
+                DateTimeNNV.Value = ngayNghiViec.Value;
+            }
+            else
+            {
+                DateTimeNNV.Checked = false; // hoặc ẩn đi
+            }
             txtTrangThai.Text = trangThai;
             txtGhiChu.Text = ghiChu;
             //ComboBoxCV.Text = chucVu;
@@ -123,7 +131,7 @@ namespace QuanLyNhanVien
         private void guna2GradientButton2_Click(object sender, EventArgs e)
         {
             Lenh = @"UPDATE NhanVien
-                    SET  HoTen = @HoTen, NgaySinh = @NgaySinh, GioiTinh = @GioiTinh, DiaChi = @DiaChi, SoDienThoai = @SoDienThoai, Email = @Email, NgayVaoLam = @NgayVaoLam, ID_PhongBan=@ID_PhongBan, ID_ChucVu = @ID_ChucVu, 
+                    SET  HoTen = @HoTen, NgaySinh = @NgaySinh, GioiTinh = @GioiTinh, DiaChi = @DiaChi, SoDienThoai = @SoDienThoai, Email = @Email, NgayVaoLam = @NgayVaoLam, NgayNghiViec = @NgayNghiViec,ID_PhongBan=@ID_PhongBan, ID_ChucVu = @ID_ChucVu, 
                     TrangThai = @TrangThai, GhiChu = @GhiChu
                     WHERE  (ID_NhanVien = @Original_ID_NhanVien)";
             ThucHien = new SqlCommand(Lenh, KetNoi);
@@ -134,6 +142,7 @@ namespace QuanLyNhanVien
             ThucHien.Parameters.Add("@SoDienThoai", SqlDbType.NVarChar);
             ThucHien.Parameters.Add("@Email", SqlDbType.NVarChar);
             ThucHien.Parameters.Add("@NgayVaoLam", SqlDbType.Date);
+            ThucHien.Parameters.Add("@NgayNghiViec", SqlDbType.Date);
             ThucHien.Parameters.Add("@ID_PhongBan", SqlDbType.Int);
             ThucHien.Parameters.Add("@ID_ChucVu", SqlDbType.Int);
             ThucHien.Parameters.Add("@TrangThai", SqlDbType.NVarChar);
@@ -145,6 +154,7 @@ namespace QuanLyNhanVien
             ThucHien.Parameters["@SoDienThoai"].Value = txtSDT.Text;
             ThucHien.Parameters["@Email"].Value = txtEmail.Text;
             ThucHien.Parameters["@NgayVaoLam"].Value = DateTimeNgayVaoLam.Text;
+            ThucHien.Parameters["@NgayNghiViec"].Value = DateTimeNNV.Text;
             ThucHien.Parameters["@ID_PhongBan"].Value = ID_PhongBan;
             ThucHien.Parameters["@ID_ChucVu"].Value = ID_ChucVu;
             ThucHien.Parameters["@TrangThai"].Value = txtTrangThai.Text;

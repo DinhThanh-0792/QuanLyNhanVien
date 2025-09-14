@@ -47,5 +47,28 @@ namespace QuanLyNhanVien
         {
             LoadControl(new UserControlPhongBan());
         }
+
+        private void guna2Button6_Click(object sender, EventArgs e)
+        {
+            LoadControl(new UserControlBCTK());
+        }
+
+        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Xác nhận trước khi đăng xuất
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?",
+                                                  "Xác nhận",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                // Mở lại form login
+                FormLogin formLogin = new FormLogin();
+                formLogin.Show();
+
+                // Đóng form main hiện tại
+                this.Close();
+            }
+        }
     }
 }

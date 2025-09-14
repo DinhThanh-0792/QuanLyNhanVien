@@ -118,8 +118,8 @@ namespace QuanLyNhanVien
         private void guna2GradientButton2_Click(object sender, EventArgs e)
         {
             Lenh = @"INSERT INTO NhanVien
-                    (HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email, NgayVaoLam, ID_PhongBan, ID_ChucVu, TrangThai, GhiChu)
-                    VALUES (@HoTen,@NgaySinh,@GioiTinh,@DiaChi,@SoDienThoai,@Email,@NgayVaoLam,@ID_PhongBan,@ID_ChucVu,@TrangThai,@GhiChu)";
+                    (HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email, NgayVaoLam, NgayNghiViec, ID_PhongBan, ID_ChucVu, TrangThai, GhiChu)
+                    VALUES (@HoTen,@NgaySinh,@GioiTinh,@DiaChi,@SoDienThoai,@Email,@NgayVaoLam,@NgayNghiViec,@ID_PhongBan,@ID_ChucVu,@TrangThai,@GhiChu)";
             ThucHien = new SqlCommand(Lenh, KetNoi);
             ThucHien.Parameters.Add("@HoTen", SqlDbType.NVarChar);
             ThucHien.Parameters.Add("@NgaySinh", SqlDbType.Date);
@@ -128,6 +128,7 @@ namespace QuanLyNhanVien
             ThucHien.Parameters.Add("@SoDienThoai", SqlDbType.NVarChar);
             ThucHien.Parameters.Add("@Email", SqlDbType.NVarChar);
             ThucHien.Parameters.Add("@NgayVaoLam", SqlDbType.Date);
+            ThucHien.Parameters.Add("@NgayNghiViec", SqlDbType.Date);
             ThucHien.Parameters.Add("@ID_PhongBan", SqlDbType.Int);
             ThucHien.Parameters.Add("@ID_ChucVu", SqlDbType.Int);
             ThucHien.Parameters.Add("@TrangThai", SqlDbType.NVarChar);
@@ -139,6 +140,7 @@ namespace QuanLyNhanVien
             ThucHien.Parameters["@SoDienThoai"].Value = txtSDT.Text;
             ThucHien.Parameters["@Email"].Value = txtEmail.Text;
             ThucHien.Parameters["@NgayVaoLam"].Value = DateTimeNgayVaoLam.Text;
+            ThucHien.Parameters["@NgayNghiViec"].Value = DateTimeNNV.Text;
             ThucHien.Parameters["@ID_PhongBan"].Value = ID_PhongBan;
             ThucHien.Parameters["@ID_ChucVu"].Value = ID_ChucVu;
             ThucHien.Parameters["@TrangThai"].Value = txtTrangThai.Text;

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QuanLyNhanVien
 {
@@ -46,7 +47,7 @@ namespace QuanLyNhanVien
         void Hien()
         {
             DataGridViewNV.Rows.Clear();
-            Lenh = @"SELECT NhanVien.ID_NhanVien, PhongBan.TenPhongBan, NhanVien.HoTen, NhanVien.NgaySinh, NhanVien.GioiTinh, NhanVien.DiaChi, NhanVien.SoDienThoai, NhanVien.Email, NhanVien.NgayVaoLam, ChucVu.TenChucVu, NhanVien.TrangThai, 
+            Lenh = @"SELECT NhanVien.ID_NhanVien, PhongBan.TenPhongBan, NhanVien.HoTen, NhanVien.NgaySinh, NhanVien.GioiTinh, NhanVien.DiaChi, NhanVien.SoDienThoai, NhanVien.Email, NhanVien.NgayVaoLam, NhanVien.NgayNghiViec, ChucVu.TenChucVu, NhanVien.TrangThai, 
                     NhanVien.GhiChu
                     FROM     NhanVien INNER JOIN
                     ChucVu ON NhanVien.ID_ChucVu = ChucVu.ID_ChucVu INNER JOIN
@@ -71,6 +72,7 @@ namespace QuanLyNhanVien
                 DataGridViewNV.Rows[i].Cells[2].Value = Doc[2];
                 DataGridViewNV.Rows[i].Cells[10].Value = Doc[10];
                 DataGridViewNV.Rows[i].Cells[1].Value = Doc[1];
+                DataGridViewNV.Rows[i].Cells[12].Value = Doc[12];
                 i++;
             }
 
@@ -86,6 +88,8 @@ namespace QuanLyNhanVien
         private void UserControlNhanVien_Load_1(object sender, EventArgs e)
         {
             KetNoi = new SqlConnection(Nguon);
+            LoadChucVu();
+            LoadPhongBan();
             Hien();
         }
 
@@ -104,14 +108,22 @@ namespace QuanLyNhanVien
                 string soDienThoai = row.Cells[6].Value.ToString();
                 string email = row.Cells[7].Value.ToString();
                 DateTime ngayVaoLam = Convert.ToDateTime(row.Cells[8].Value);
-                string trangThai = row.Cells[10].Value.ToString();
-                string ghiChu = row.Cells[11].Value.ToString();
-                string chucVu = row.Cells[9].Value.ToString();
+                DateTime? ngayNghiViec = null;
+                if (row.Cells[12].Value != null && !string.IsNullOrWhiteSpace(row.Cells[9].Value.ToString()))
+                {
+                    if (DateTime.TryParse(row.Cells[12].Value.ToString(), out DateTime temp))
+                    {
+                        ngayNghiViec = temp;
+                    }
+                }
+                string trangThai = row.Cells[11].Value.ToString();
+                string ghiChu = row.Cells[12].Value.ToString();
+                string chucVu = row.Cells[10].Value.ToString();
                 string phongBan = row.Cells[1].Value.ToString();
 
                 // Gọi FormSua và truyền dữ liệu sang
                 FormSua f = new FormSua(id, hoTen, ngaySinh, gioiTinh, diaChi,
-                                        soDienThoai, email, ngayVaoLam, trangThai,
+                                        soDienThoai, email, ngayVaoLam, ngayNghiViec,trangThai,
                                         ghiChu, chucVu, phongBan);
 
                 if (f.ShowDialog() == DialogResult.OK)
@@ -145,6 +157,85 @@ namespace QuanLyNhanVien
             {
 
             }
+        }
+        private void LoadPhongBan()
+        {
+            KetNoi = new SqlConnection(Nguon);
+            ComboBox2.Items.Clear();
+            Lenh = @"SELECT TenPhongBan
+                   FROM     PhongBan";
+            ThucHien = new SqlCommand(Lenh, KetNoi);
+
+            KetNoi.Open();
+            Doc = ThucHien.ExecuteReader();
+            int i = 0;
+            while (Doc.Read())
+            {
+                ComboBox2.Items.Add(Doc[0]);
+                i++;
+            }
+
+            KetNoi.Close();
+        }
+        private void LoadChucVu()
+        {
+            KetNoi = new SqlConnection(Nguon);
+            ComboBox1.Items.Clear();
+            Lenh = @"SELECT TenChucVu
+                   FROM     ChucVu";
+            ThucHien = new SqlCommand(Lenh, KetNoi);
+
+            KetNoi.Open();
+            Doc = ThucHien.ExecuteReader();
+            int i = 0;
+            while (Doc.Read())
+            {
+                ComboBox1.Items.Add(Doc[0]);
+                i++;
+            }
+
+            KetNoi.Close();
+        }
+
+        private void guna2GradientButton1_Click(object sender, EventArgs e)
+        {
+            KetNoi = new SqlConnection(Nguon);
+            DataGridViewNV.Rows.Clear();
+            Lenh = @"SELECT NhanVien.ID_NhanVien, PhongBan.TenPhongBan, NhanVien.HoTen, NhanVien.NgaySinh, NhanVien.GioiTinh, NhanVien.DiaChi, NhanVien.SoDienThoai, NhanVien.Email, NhanVien.NgayVaoLam, ChucVu.TenChucVu, NhanVien.TrangThai, 
+                    NhanVien.GhiChu
+                    FROM     NhanVien INNER JOIN
+                             ChucVu ON NhanVien.ID_ChucVu = ChucVu.ID_ChucVu INNER JOIN
+                             PhongBan ON NhanVien.ID_PhongBan = PhongBan.ID_PhongBan
+                    WHERE (PhongBan.TenPhongBan=@TenPhongBan OR ChucVu.TenChucVu=@TenChucVu OR NhanVien.HoTen=@HoTen) ";
+            ThucHien = new SqlCommand(Lenh, KetNoi);
+            ThucHien.Parameters.Add("@TenPhongBan", SqlDbType.NVarChar);
+            ThucHien.Parameters.Add("@TenChucVu", SqlDbType.NVarChar);
+            ThucHien.Parameters.Add("@HoTen", SqlDbType.NVarChar);
+            ThucHien.Parameters["@TenPhongBan"].Value = ComboBox2.Text;
+            ThucHien.Parameters["@TenChucVu"].Value = ComboBox1.Text;
+            ThucHien.Parameters["@HoTen"].Value = TextBox1.Text;
+            KetNoi.Open();
+            Doc = ThucHien.ExecuteReader();
+            int i = 0;
+            while (Doc.Read())
+            {
+                DataGridViewNV.Rows.Add();
+                DataGridViewNV.Rows[i].Cells[0].Value = Doc[0];
+                DataGridViewNV.Rows[i].Cells[1].Value = Doc[1];
+                DataGridViewNV.Rows[i].Cells[2].Value = Doc[2];
+                DataGridViewNV.Rows[i].Cells[3].Value = Doc[3];
+                DataGridViewNV.Rows[i].Cells[4].Value = Doc[4];
+                DataGridViewNV.Rows[i].Cells[5].Value = Doc[5];
+                DataGridViewNV.Rows[i].Cells[6].Value = Doc[6];
+                DataGridViewNV.Rows[i].Cells[7].Value = Doc[7];
+                DataGridViewNV.Rows[i].Cells[8].Value = Doc[8];
+                DataGridViewNV.Rows[i].Cells[9].Value = Doc[9];
+                DataGridViewNV.Rows[i].Cells[10].Value = Doc[10];
+                DataGridViewNV.Rows[i].Cells[11].Value = Doc[11];
+                i++;
+            }
+
+            KetNoi.Close();
         }
     }
 }
