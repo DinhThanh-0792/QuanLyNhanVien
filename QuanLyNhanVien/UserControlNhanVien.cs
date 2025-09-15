@@ -237,5 +237,10 @@ namespace QuanLyNhanVien
 
             KetNoi.Close();
         }
+
+        private void DataGridViewNV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

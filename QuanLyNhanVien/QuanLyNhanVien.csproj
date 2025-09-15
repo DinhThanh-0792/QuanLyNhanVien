@@ -93,6 +93,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLNVDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="QLNVDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLNVDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlBangLuong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlBangLuong.Designer.cs">
+      <DependentUpon>UserControlBangLuong.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControlBCTK.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -136,6 +147,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControlBangLuong.resx">
+      <DependentUpon>UserControlBangLuong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControlBCTK.resx">
       <DependentUpon>UserControlBCTK.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,6 +195,17 @@
     </None>
     <None Include="QLNVDataSet1.xss">
       <DependentUpon>QLNVDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="QLNVDataSet2.xsc">
+      <DependentUpon>QLNVDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="QLNVDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLNVDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLNVDataSet2.xss">
+      <DependentUpon>QLNVDataSet2.xsd</DependentUpon>
     </None>
     <None Include="Resources\truong-cao-dang-nghe-bach-khoa-ha-noi.png" />
   </ItemGroup>
