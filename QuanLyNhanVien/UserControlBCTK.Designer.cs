@@ -107,7 +107,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 232F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.comboBoxThang, 2, 0);
@@ -129,7 +129,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(131, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 40);
+            this.label2.Size = new System.Drawing.Size(47, 40);
             this.label2.TabIndex = 0;
             this.label2.Text = "Tháng";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -138,7 +138,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(433, 0);
+            this.label3.Location = new System.Drawing.Point(432, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 40);
             this.label3.TabIndex = 1;
@@ -149,7 +149,7 @@
             // 
             this.comboBoxThang.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBoxThang.FormattingEnabled = true;
-            this.comboBoxThang.Location = new System.Drawing.Point(185, 3);
+            this.comboBoxThang.Location = new System.Drawing.Point(184, 3);
             this.comboBoxThang.Name = "comboBoxThang";
             this.comboBoxThang.Size = new System.Drawing.Size(242, 25);
             this.comboBoxThang.TabIndex = 2;
@@ -158,7 +158,7 @@
             // 
             this.comboBoxNam.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBoxNam.FormattingEnabled = true;
-            this.comboBoxNam.Location = new System.Drawing.Point(490, 3);
+            this.comboBoxNam.Location = new System.Drawing.Point(489, 3);
             this.comboBoxNam.Name = "comboBoxNam";
             this.comboBoxNam.Size = new System.Drawing.Size(226, 25);
             this.comboBoxNam.TabIndex = 3;
@@ -175,7 +175,7 @@
             this.btnBaocao.FillColor2 = System.Drawing.Color.Teal;
             this.btnBaocao.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnBaocao.ForeColor = System.Drawing.Color.White;
-            this.btnBaocao.Location = new System.Drawing.Point(722, 3);
+            this.btnBaocao.Location = new System.Drawing.Point(721, 3);
             this.btnBaocao.Name = "btnBaocao";
             this.btnBaocao.Size = new System.Drawing.Size(109, 34);
             this.btnBaocao.TabIndex = 4;
