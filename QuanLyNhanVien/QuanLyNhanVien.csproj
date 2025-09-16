@@ -35,6 +35,10 @@
     <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net45\Guna.UI2.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
@@ -51,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassTenDangNhap.cs" />
     <Compile Include="FormDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,11 +98,40 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLNVDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="QLNVDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLNVDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlBangLuong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlBangLuong.Designer.cs">
+      <DependentUpon>UserControlBangLuong.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControlBCTK.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControlBCTK.Designer.cs">
       <DependentUpon>UserControlBCTK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlBL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlBL.Designer.cs">
+      <DependentUpon>UserControlBL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlDMK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlDMK.Designer.cs">
+      <DependentUpon>UserControlDMK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlHT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlHT.Designer.cs">
+      <DependentUpon>UserControlHT.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControlNhanVien.cs">
       <SubType>UserControl</SubType>
@@ -110,6 +144,12 @@
     </Compile>
     <Compile Include="UserControlPhongBan.Designer.cs">
       <DependentUpon>UserControlPhongBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlTCTT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlTCTT.Designer.cs">
+      <DependentUpon>UserControlTCTT.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FormDangNhap.resx">
       <DependentUpon>FormDangNhap.cs</DependentUpon>
@@ -136,14 +176,29 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControlBangLuong.resx">
+      <DependentUpon>UserControlBangLuong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControlBCTK.resx">
       <DependentUpon>UserControlBCTK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlBL.resx">
+      <DependentUpon>UserControlBL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlDMK.resx">
+      <DependentUpon>UserControlDMK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlHT.resx">
+      <DependentUpon>UserControlHT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlNhanVien.resx">
       <DependentUpon>UserControlNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlPhongBan.resx">
       <DependentUpon>UserControlPhongBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlTCTT.resx">
+      <DependentUpon>UserControlTCTT.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -181,6 +236,17 @@
     </None>
     <None Include="QLNVDataSet1.xss">
       <DependentUpon>QLNVDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="QLNVDataSet2.xsc">
+      <DependentUpon>QLNVDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="QLNVDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLNVDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLNVDataSet2.xss">
+      <DependentUpon>QLNVDataSet2.xsd</DependentUpon>
     </None>
     <None Include="Resources\truong-cao-dang-nghe-bach-khoa-ha-noi.png" />
   </ItemGroup>

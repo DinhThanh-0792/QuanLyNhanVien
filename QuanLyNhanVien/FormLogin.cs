@@ -32,7 +32,7 @@ namespace QuanLyNhanVien
                 conn.Open();
                 string tk = txt_taikhoan.Text;
                 string mk = txt_matkhau.Text;
-                string sql = "SELECT TenDangNhap, MatKhau\r\nFROM     TaiKhoan\r\nWHERE  (TenDangNhap = N'"+tk+"') AND (MatKhau = N'"+mk+"')";
+                string sql = "SELECT TenDangNhap, MatKhau, VaiTro\r\nFROM     TaiKhoan\r\nWHERE  (TenDangNhap = N'"+tk+"') AND (MatKhau = N'"+mk+"')";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (txt_matkhau.Text == "" || txt_taikhoan.Text == "")
@@ -41,17 +41,21 @@ namespace QuanLyNhanVien
                 }
                 else if (dataReader.Read() == true)
                 {
+                    ClassTenDangNhap.TenDangNhap = txt_taikhoan.Text; // Lưu tên đăng nhập vào biến toàn cục
+                    ClassTenDangNhap.VaiTro = dataReader["VaiTro"].ToString(); 
                     this.Hide();
                     FormMain f = new FormMain();
                     f.ShowDialog();
                     f = null;
                     txt_matkhau.Text = "";
                     this.Show();
+                    
                 }
                 else
                 {
                     MessageBox.Show("Tài khoản hoặc mật khẩu không đúng? Vui lòng kiểm tra lại!", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                conn.Close();
             }
             catch(Exception ex) 
             {

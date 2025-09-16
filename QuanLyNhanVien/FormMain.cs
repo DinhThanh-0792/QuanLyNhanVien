@@ -70,5 +70,42 @@ namespace QuanLyNhanVien
                 this.Close();
             }
         }
+
+        private void guna2Button5_Click(object sender, EventArgs e)
+        {
+            LoadControl(new UserControlBL());
+        }
+
+        private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadControl(new UserControlDMK());
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            btnAdmin.Text = ClassTenDangNhap.TenDangNhap;
+            if (ClassTenDangNhap.VaiTro == "admin")
+            {
+                
+            }
+            else
+            {
+                BtnNhanVien.Visible = false;
+                guna2Button4.Visible = false;
+                guna2Button5.Visible = false;
+                guna2Button6.Visible = false;
+                guna2Button8.Visible = false;
+            }
+        }
+
+        private void guna2Button8_Click(object sender, EventArgs e)
+        {
+            LoadControl(new UserControlHT());
+        }
+
+        private void guna2Button7_Click(object sender, EventArgs e)
+        {
+            LoadControl(new UserControlTCTT());
+        }
     }
 }

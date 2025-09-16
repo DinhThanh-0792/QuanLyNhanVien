@@ -51,9 +51,9 @@ namespace QuanLyNhanVien
             chartBaoCao.Series["Nhan vien nghi viec"].ChartType = SeriesChartType.Column;
             chartBaoCao.Series["Nhan vien nghi viec"].Color = Color.Red;
 
-            chartBaoCao.Series.Add("Nhan vien thoi viec");
-            chartBaoCao.Series["Nhan vien thoi viec"].ChartType = SeriesChartType.Column;
-            chartBaoCao.Series["Nhan vien thoi viec"].Color = Color.Orange;
+            chartBaoCao.Series.Add("Nhan vien thu viec");
+            chartBaoCao.Series["Nhan vien thu viec"].ChartType = SeriesChartType.Column;
+            chartBaoCao.Series["Nhan vien thu viec"].Color = Color.Orange;
         }
 
         private void guna2GradientButton1_Click(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace QuanLyNhanVien
             }
             int thang = (int)comboBoxThang.SelectedItem;
             int nam = (int)comboBoxNam.SelectedItem;
-            int VaoLam = 0, NghiViec = 0, ThoiViec = 0;
+            int VaoLam = 0, NghiViec = 0, ThuViec = 0;
 
             KetNoi = new SqlConnection(Nguon);
             KetNoi.Open();
@@ -81,12 +81,12 @@ namespace QuanLyNhanVien
             ThucHien.Parameters.AddWithValue("@Thang", thang);
             ThucHien.Parameters.AddWithValue("@Nam", nam);
             NghiViec = (int)ThucHien.ExecuteScalar();
-            // Nhân viên thôi việc
-            Lenh = @"SELECT COUNT(*) FROM NhanVien WHERE TrangThai = N'Thôi việc' AND MONTH(NgayNghiViec) = @Thang AND YEAR(NgayNghiViec) = @Nam";   
+            // Nhân viên thu việc
+            Lenh = @"SELECT COUNT(*) FROM NhanVien WHERE TrangThai = N'Thử việc' AND MONTH(NgayVaoLam) = @Thang AND YEAR(NgayVaoLam) = @Nam";   
             ThucHien = new SqlCommand(Lenh, KetNoi);
             ThucHien.Parameters.AddWithValue("@Thang", thang);
             ThucHien.Parameters.AddWithValue("@Nam", nam);
-            ThoiViec = (int)ThucHien.ExecuteScalar();
+            ThuViec = (int)ThucHien.ExecuteScalar();
             // Cập nhật biểu đồ
             foreach (var series in chartBaoCao.Series)
             {
@@ -94,7 +94,7 @@ namespace QuanLyNhanVien
             }
             chartBaoCao.Series["Nhan vien vao lam"].Points.AddXY("Loai nhan vien ", VaoLam);
             chartBaoCao.Series["Nhan vien nghi viec"].Points.AddXY("Loai nhan vien ", NghiViec);
-            chartBaoCao.Series["Nhan vien thoi viec"].Points.AddXY("Loai nhan vien ", ThoiViec);
+            chartBaoCao.Series["Nhan vien thu viec"].Points.AddXY("Loai nhan vien ", ThuViec);
         }
        
 }

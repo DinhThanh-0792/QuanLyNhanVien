@@ -37,7 +37,7 @@
             this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             this.BtnNhanVien = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnTrangChu = new Guna.UI2.WinForms.Guna2Button();
             this.btnAdmin = new Guna.UI2.WinForms.Guna2Button();
             this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
@@ -68,7 +68,7 @@
             this.PanelSidebar.Controls.Add(this.guna2Button5);
             this.PanelSidebar.Controls.Add(this.guna2Button4);
             this.PanelSidebar.Controls.Add(this.BtnNhanVien);
-            this.PanelSidebar.Controls.Add(this.guna2Button2);
+            this.PanelSidebar.Controls.Add(this.btnTrangChu);
             this.PanelSidebar.Controls.Add(this.btnAdmin);
             this.PanelSidebar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelSidebar.Location = new System.Drawing.Point(2, 2);
@@ -108,6 +108,7 @@
             this.guna2Button8.Size = new System.Drawing.Size(135, 37);
             this.guna2Button8.TabIndex = 8;
             this.guna2Button8.Text = "Hệ thống";
+            this.guna2Button8.Click += new System.EventHandler(this.guna2Button8_Click);
             // 
             // guna2Button7
             // 
@@ -127,6 +128,7 @@
             this.guna2Button7.Size = new System.Drawing.Size(151, 37);
             this.guna2Button7.TabIndex = 7;
             this.guna2Button7.Text = "Tra cứu thông tin";
+            this.guna2Button7.Click += new System.EventHandler(this.guna2Button7_Click);
             // 
             // guna2Button6
             // 
@@ -166,6 +168,7 @@
             this.guna2Button5.Size = new System.Drawing.Size(135, 37);
             this.guna2Button5.TabIndex = 5;
             this.guna2Button5.Text = "Bảng lương";
+            this.guna2Button5.Click += new System.EventHandler(this.guna2Button5_Click);
             // 
             // guna2Button4
             // 
@@ -207,24 +210,24 @@
             this.BtnNhanVien.Text = "Nhân viên";
             this.BtnNhanVien.Click += new System.EventHandler(this.BtnNhanVien_Click);
             // 
-            // guna2Button2
+            // btnTrangChu
             // 
-            this.guna2Button2.BorderRadius = 10;
-            this.guna2Button2.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button2.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.guna2Button2.Location = new System.Drawing.Point(9, 128);
-            this.guna2Button2.Margin = new System.Windows.Forms.Padding(2);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(135, 37);
-            this.guna2Button2.TabIndex = 2;
-            this.guna2Button2.Text = "Trang chủ";
+            this.btnTrangChu.BorderRadius = 10;
+            this.btnTrangChu.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnTrangChu.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnTrangChu.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnTrangChu.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnTrangChu.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnTrangChu.FillColor = System.Drawing.Color.Transparent;
+            this.btnTrangChu.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrangChu.ForeColor = System.Drawing.Color.Black;
+            this.btnTrangChu.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnTrangChu.Location = new System.Drawing.Point(9, 128);
+            this.btnTrangChu.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTrangChu.Name = "btnTrangChu";
+            this.btnTrangChu.Size = new System.Drawing.Size(135, 37);
+            this.btnTrangChu.TabIndex = 2;
+            this.btnTrangChu.Text = "Trang chủ";
             // 
             // btnAdmin
             // 
@@ -290,18 +293,19 @@
             this.ContextMenuStrip1.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
             this.ContextMenuStrip1.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
             this.ContextMenuStrip1.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.ContextMenuStrip1.Size = new System.Drawing.Size(181, 74);
+            this.ContextMenuStrip1.Size = new System.Drawing.Size(168, 52);
             // 
             // đổiMậtKhẩuToolStripMenuItem
             // 
             this.đổiMậtKhẩuToolStripMenuItem.Name = "đổiMậtKhẩuToolStripMenuItem";
-            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
             this.đổiMậtKhẩuToolStripMenuItem.Text = "Đổi mật khẩu";
+            this.đổiMậtKhẩuToolStripMenuItem.Click += new System.EventHandler(this.đổiMậtKhẩuToolStripMenuItem_Click);
             // 
             // đăngXuấtToolStripMenuItem
             // 
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
             this.đăngXuấtToolStripMenuItem.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem_Click);
             // 
@@ -383,6 +387,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý nhân viên";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.PanelSidebar.ResumeLayout(false);
             this.PanelSidebar.PerformLayout();
             this.ContextMenuStrip1.ResumeLayout(false);
@@ -405,7 +410,7 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
         private Guna.UI2.WinForms.Guna2Button BtnNhanVien;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button btnTrangChu;
         private Guna.UI2.WinForms.Guna2Button guna2Button8;
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
         private Guna.UI2.WinForms.Guna2ContextMenuStrip ContextMenuStrip1;

@@ -82,6 +82,7 @@ namespace QuanLyNhanVien
         {
             KetNoi = new SqlConnection(Nguon);
             HienThi();
+            Hien();
         }
 
         private void btnSua_Click(object sender, EventArgs e)
@@ -119,6 +120,97 @@ namespace QuanLyNhanVien
                 ThucHien.ExecuteNonQuery();
                 KetNoi.Close();
                 HienThi();
+            }
+            else
+            {
+
+            }
+        }
+
+       
+
+        private void btnThemCV_Click(object sender, EventArgs e)
+        {
+            KetNoi = new SqlConnection(Nguon);
+            Lenh = @"INSERT INTO ChucVu
+                   (TenChucVu, MoTa, GhiChu)
+                   VALUES (@TenChucVu, @MoTa,@GhiChu)";
+            ThucHien = new SqlCommand(Lenh, KetNoi);
+            ThucHien.Parameters.Add("@TenChucVu", SqlDbType.NVarChar);
+            ThucHien.Parameters.Add("@MoTa", SqlDbType.NVarChar);
+            ThucHien.Parameters.Add("@GhiChu", SqlDbType.NVarChar);
+            ThucHien.Parameters["@TenChucVu"].Value = txtTenChucVu.Text;
+            ThucHien.Parameters["@MoTa"].Value = txtMoTaChucVu.Text;
+            ThucHien.Parameters["@GhiChu"].Value = txtGhiChuChucVu.Text;
+            KetNoi.Open();
+            ThucHien.ExecuteNonQuery();
+            KetNoi.Close();
+            Hien();
+        }
+        void Hien()
+        {
+            DataGridViewCV.Rows.Clear();
+            Lenh = @"SELECT ID_ChucVu, TenChucVu, MoTa, GhiChu
+                   FROM     ChucVu";
+            ThucHien = new SqlCommand(Lenh, KetNoi);
+
+            KetNoi.Open();
+            Doc = ThucHien.ExecuteReader();
+            int i = 0;
+            while (Doc.Read())
+            {
+                DataGridViewCV.Rows.Add();
+                DataGridViewCV.Rows[i].Cells[0].Value = Doc[0];
+                DataGridViewCV.Rows[i].Cells[1].Value = Doc[1];
+                DataGridViewCV.Rows[i].Cells[2].Value = Doc[2];
+                DataGridViewCV.Rows[i].Cells[3].Value = Doc[3];
+                i++;
+            }
+
+            KetNoi.Close();
+        }
+
+        private void DataGridViewCV_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtTenChucVu.Text = DataGridViewCV.CurrentRow.Cells[1].Value.ToString();
+            txtMoTaChucVu.Text = DataGridViewCV.CurrentRow.Cells[2].Value.ToString();
+            txtGhiChuChucVu.Text = DataGridViewCV.CurrentRow.Cells[3].Value.ToString();
+        }
+        private void guna2GradientButton3_Click(object sender, EventArgs e)
+        {
+            Lenh = @"UPDATE ChucVu
+                   SET          TenChucVu = @TenChucVu, MoTa=@MoTa, GhiChu = @GhiChu
+                   WHERE  (ID_ChucVu = @Original_ID_ChucVu)";
+            ThucHien = new SqlCommand(Lenh, KetNoi);
+            ThucHien.Parameters.Add("@TenChucVu", SqlDbType.NVarChar);
+            ThucHien.Parameters.Add("@MoTa", SqlDbType.NVarChar);
+            ThucHien.Parameters.Add("@GhiChu", SqlDbType.NVarChar);
+            ThucHien.Parameters["@TenChucVu"].Value = txtTenChucVu.Text;
+            ThucHien.Parameters["@MoTa"].Value = txtMoTaChucVu.Text;
+            ThucHien.Parameters["@GhiChu"].Value = txtGhiChuChucVu.Text;
+            ThucHien.Parameters.Add("@Original_ID_ChucVu", SqlDbType.Int);
+            ThucHien.Parameters["@Original_ID_ChucVu"].Value = DataGridViewCV.CurrentRow.Cells[0].Value;
+            KetNoi.Open();
+            ThucHien.ExecuteNonQuery();
+            KetNoi.Close();
+            Hien();
+        }
+
+        private void btnXoaCV_Click(object sender, EventArgs e)
+        {
+            DialogResult D = MessageBox.Show("Ban co muon xoa " + txtTenChucVu.Text, "Chu y", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (D == DialogResult.Yes)
+            {
+                Lenh = @"DELETE FROM ChucVu
+                   WHERE  (ID_ChucVu = @Original_ID_ChucVu)";
+                ThucHien = new SqlCommand(Lenh, KetNoi);
+
+                ThucHien.Parameters.Add("@Original_ID_ChucVu", SqlDbType.Int);
+                ThucHien.Parameters["@Original_ID_ChucVu"].Value = DataGridViewCV.CurrentRow.Cells[0].Value;
+                KetNoi.Open();
+                ThucHien.ExecuteNonQuery();
+                KetNoi.Close();
+                Hien();
             }
             else
             {

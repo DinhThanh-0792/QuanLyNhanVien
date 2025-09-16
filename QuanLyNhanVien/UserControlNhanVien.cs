@@ -5,10 +5,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace QuanLyNhanVien
 {
@@ -236,6 +238,84 @@ namespace QuanLyNhanVien
             }
 
             KetNoi.Close();
+        }
+
+        private void DataGridViewNV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        //Xuất Excel
+        private void ExportToExcel(DataGridView dgv)
+        {
+            Excel.Application excelApp = null;
+            Excel.Workbook workbook = null;
+            Excel._Worksheet worksheet = null;
+
+            try
+            {
+                excelApp = new Excel.Application();
+                workbook = excelApp.Workbooks.Add(Type.Missing);
+                worksheet = workbook.ActiveSheet;
+                worksheet.Name = "NhanVien";
+
+                // Xuất tiêu đề cột
+                for (int i = 1; i <= dgv.Columns.Count; i++)
+                {
+                    worksheet.Cells[1, i] = dgv.Columns[i - 1].HeaderText;
+                }
+
+                // Xuất dữ liệu
+                for (int i = 0; i < dgv.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dgv.Columns.Count; j++)
+                    {
+                        worksheet.Cells[i + 2, j + 1] = dgv.Rows[i].Cells[j].Value?.ToString();
+                    }
+                }
+
+                // Lấy vùng dữ liệu đã dùng
+                Excel.Range usedRange = worksheet.UsedRange;
+
+                // Thêm border cho toàn bộ bảng
+                usedRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                usedRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
+
+                // Format tiêu đề (dòng 1)
+                Excel.Range headerRange = worksheet.Range[worksheet.Cells[1, 1], worksheet.Cells[1, dgv.Columns.Count]];
+                headerRange.Font.Bold = true;
+                headerRange.Interior.Color = Color.LightGray; // nền xám nhạt
+                headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                headerRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+                // AutoFit toàn bộ cột
+                worksheet.Columns.AutoFit();
+
+                // Hiển thị Excel
+                excelApp.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi xuất Excel: " + ex.Message);
+            }
+            finally
+            {
+                // Giải phóng COM object để tránh crash
+                if (worksheet != null) Marshal.ReleaseComObject(worksheet);
+                if (workbook != null) Marshal.ReleaseComObject(workbook);
+                if (excelApp != null) Marshal.ReleaseComObject(excelApp);
+
+                worksheet = null;
+                workbook = null;
+                excelApp = null;
+
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            ExportToExcel(DataGridViewNV);
         }
     }
 }

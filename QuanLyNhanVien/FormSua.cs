@@ -154,7 +154,10 @@ namespace QuanLyNhanVien
             ThucHien.Parameters["@SoDienThoai"].Value = txtSDT.Text;
             ThucHien.Parameters["@Email"].Value = txtEmail.Text;
             ThucHien.Parameters["@NgayVaoLam"].Value = DateTimeNgayVaoLam.Text;
-            ThucHien.Parameters["@NgayNghiViec"].Value = DateTimeNNV.Text;
+            if (DateTimeNNV.Checked)
+                ThucHien.Parameters["@NgayNghiViec"].Value = DateTimeNNV.Text;
+            else
+                ThucHien.Parameters["@NgayNghiViec"].Value = DBNull.Value;
             ThucHien.Parameters["@ID_PhongBan"].Value = ID_PhongBan;
             ThucHien.Parameters["@ID_ChucVu"].Value = ID_ChucVu;
             ThucHien.Parameters["@TrangThai"].Value = txtTrangThai.Text;
